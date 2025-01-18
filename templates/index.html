@@ -10,8 +10,8 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/fav1.jpg' %}" rel="icon">
 
+ <link href="{% static 'assets/img/fav1.jpg' %}" rel="icon">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -24,56 +24,333 @@
   <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
-  <!-- Main CSS File -->
-  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+    <style>
 
-  <!-- =======================================================
-  * Template Name: Yummy
-  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+:root {
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Amatic SC",  sans-serif;
+  --nav-font: "Inter",  sans-serif;
+}
+
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+:root {
+  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #ffffff; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #ffffff; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+}
+
+/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+:root {
+  --nav-color: #ffffff;  /* The default color of the main navmenu links */
+  --nav-hover-color: #ffffff; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+
+/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
+
+.dark-background {
+  --background-color: #1919c3;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+
+}
+
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Desktop Navigation */
+@media (min-width: 1200px) {
+  .navmenu {
+    padding: 0;
+  }
+
+  .navmenu ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+      text-decoration: none;
+  }
+
+  .navmenu li {
+    position: relative;
+  }
+
+  .navmenu>ul>li {
+    white-space: nowrap;
+    padding: 15px 14px;
+  }
+
+  .navmenu>ul>li:last-child {
+    padding-right: 0;
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-color);
+    font-size: 15px;
+    padding: 0 2px;
+
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    transition: 0.3s;
+  }
+
+  .navmenu>ul>li>a:before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+
+
+    width: 0 ;
+
+  }
+
+
+
+
+
+
+/* Mobile Navigation */
+@media (max-width: 1199px) {
+  .mobile-nav-toggle {
+    color: var(--nav-color);
+    font-size: 28px;
+    line-height: 0;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .navmenu {
+    padding: 0;
+    z-index: 9997;
+  }
+
+  .navmenu ul {
+    display: none;
+    list-style: none;
+    position: absolute;
+    inset: 60px 20px 20px 20px;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 6px;
+    background-color: var(--nav-mobile-background-color);
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+    box-shadow: none;
+    overflow-y: auto;
+    transition: 0.3s;
+    z-index: 9998;
+      text-decoration: none;
+      float: right;
+  }
+
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-dropdown-color);
+    padding: 10px 20px;
+
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    transition: 0.3s;
+  }
+
+  .navmenu a i,
+  .navmenu a:focus i {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+      text-decoration: none;
+    background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  }
+
+
+
+  .navmenu .dropdown ul {
+    position: static;
+    display: none;
+    z-index: 99;
+    padding: 10px 0;
+    margin: 10px 20px;
+    background-color: var(--nav-dropdown-background-color);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .navmenu .dropdown ul ul {
+    background-color: rgba(33, 37, 41, 0.1);
+  }
+
+
+
+
+  .mobile-nav-active .navmenu {
+    position: fixed;
+    overflow: hidden;
+    inset: 0;
+    background: rgba(33, 37, 41, 0.8);
+    transition: 0.3s;
+  }
+
+  .mobile-nav-active .navmenu>ul {
+    display: block;
+  }
+}
+
+/* Footer Styles */
+.footer {
+    background-color: darkblue;
+    color: #fff;
+    padding: 40px 0;
+    margin-bottom: 0;
+}
+
+.footer h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 24px;
+    color: #bbb;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer .container > div {
+    flex: 1;
+    margin: 10px;
+}
+
+.footer .social-links a {
+    color: #fff;
+    margin-right: 15px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.footer .social-links a:hover {
+    color: #1da1f2; /* Twitter color */
+}
+
+.footer .copyright {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #bbb;
+}
+
+.footer .credits a {
+    color: #1da1f2;
+    text-decoration: none;
+}
+
+.footer .credits a:hover {
+    text-decoration: underline;
+}
+
+
+    </style>
+
 </head>
 
-<body class="index-page">
+<body class="starter-page-page">
 
-  <header id="header" class="header d-flex align-items-center sticky-top dark-background">
+  <header  id="header" style="display: flex; align-items: center; background-color: darkblue" >
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+
         <h1 class="sitename">Lexur</h1>
+
       </a>
 
       <nav id="navmenu" class="navmenu">
+
         <ul>
           <li><a href="{% url 'index' %}">Home<br></a></li>
 
           <li><a href="{% url 'menu' %}">Menu</a></li>
           <li><a href="{% url 'chef' %}">Chefs</a></li>
           <li><a href="{% url 'events' %}">Meeting and Events</a></li>
-          <li><a href="{% url 'rooms' %}">Rooms</a></li>
-
+            <li><a href="{% url 'rooms' %}">Rooms</a></li>
           <li><a href="{% url 'contact' %}">Contact Us</a></li>
           <li><a href="{% url 'order' %}">Order now</a></li>
-            </ul>
+        </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="{% url 'book' %}">Book Now</a>
+      <a  class="btn-getstarted" href="{% url 'book' %}">Book With Us</a>
 
     </div>
   </header>
 
-      <div class="d-flex justify-content-end">
-          <a href="{% url 'gallery' %}" class=" btn-danger rounded-pill" style="width: 200px; margin: 30px; "> Gallery</a>
-
+  <div class="full-width-div" style="background-color: #e4e7ea; ">
+  <div class="d-flex justify-content-end b" >
+          <a href="{% url 'gallery' %}" class=" btn-primary rounded-pill " style="width: 200px; margin: 30px; "> Gallery</a>
 
       </div>
+</div>
+
+  <main class="main" >
 
 
 
-  <main class="main text-center justify-content-center align-items-center">
+
+
+
+
+   <main class="main text-center justify-content-center align-items-center">
       <div style="position: relative;" >
           <img src="{% static 'assets/room/conference2.webp' %}" alt="lexur logo" style="height: 300px; width: 100%">
           <div style="position: absolute;top:0;right:0;bottom:0;left:0; color: white; font-size: 70px; display: flex; align-items: center; justify-content: center;">
@@ -313,68 +590,50 @@
 
   </main>
 
- <footer id="footer" class="footer dark-background">
 
+
+
+  </main>
+
+ <footer>
+     <footer id="footer" class="footer dark-background">
     <div class="container">
-      <div class="row gy-3">
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-geo-alt icon"></i>
-          <div class="address">
-            <h4>Address</h4>
-            <p>Kisii-Kilgoris Road</p>
-            <p>Gekomu, P.O BOX 742</p>
-            <p></p>
-          </div>
-
-        </div>
-
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-telephone icon"></i>
-          <div>
+        <div>
             <h4>Contact</h4>
             <p>
-              <strong>Phone:</strong> <span>+254 757450768</span><br>
-              <strong>Email:</strong> <span>lexur254@gmail.com</span><br>
+                <strong>Phone:</strong> <span>+254 757450768</span><br>
+                <strong>Email:</strong> <span>lexur254@gmail.com</span><br>
             </p>
-          </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-clock icon"></i>
-          <div>
+        <div>
             <h4>Opening Hours</h4>
             <p>
-              <strong>Mon-Sat:</strong> <span>All day</span><br>
-              <strong>Sunday</strong>: <span>All day</span>
+                <strong>Mon-Sat:</strong> <span>All day</span><br>
+                <strong>Sunday:</strong> <span>All day</span>
             </p>
-          </div>
         </div>
 
-        <div class="col-lg-3 col-md-6">
-          <h4>Follow Us</h4>
-          <div class="social-links d-flex">
-            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
+        <div>
+            <h4>Follow Us</h4>
+            <div class="social-links d-flex">
+                <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
         </div>
-
-      </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Lexur</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="Kelvin Chwara">Kelvin Chwara</a>
-      </div>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Lexur</strong> <span>All Rights Reserved</span></p>
+        <div class="credits">
+            Designed by <a href="Kelvin Chwara">Kelvin Chwara</a>
+        </div>
     </div>
+</footer>
 
-  </footer>
+ </footer>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
